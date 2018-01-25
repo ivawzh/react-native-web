@@ -11,6 +11,7 @@
  * @noflow
  */
 
+import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment';
 import createReactDOMStyle from './createReactDOMStyle';
 import flattenArray from '../../modules/flattenArray';
 import flattenStyle from './flattenStyle';
@@ -22,12 +23,22 @@ import StyleSheetManager from './StyleSheetManager';
 const emptyObject = {};
 
 export default class ReactNativeStyleResolver {
-  cache = { ltr: {}, rtl: {} };
+  _init() {
+    this.cache = { ltr: {}, rtl: {} };
+    this.styleSheetManager = new StyleSheetManager();
+  }
 
-  styleSheetManager = new StyleSheetManager();
+  constructor() {
+    this._init();
+  }
 
-  getStyleSheets() {
-    return this.styleSheetManager.getStyleSheets();
+  getStyleSheet() {
+    // reset state on the server so critical css is always the result
+    const sheet = this.styleSheetManager.getStyleSheet();
+    if (!canUseDOM) {
+      this._init();
+    }
+    return sheet;
   }
 
   _injectRegisteredStyle(id) {

@@ -29,7 +29,6 @@ export default class WebStyleSheet {
       }
     }
 
-    this.id = id;
     this._domStyleElement = _domStyleElement;
   }
 
@@ -52,10 +51,8 @@ export default class WebStyleSheet {
         // doesn't include styles injected via 'insertRule')
         if (this._domStyleElement.textContent.indexOf(rule) === -1) {
           // $FlowFixMe
-          this._domStyleElement.sheet.insertRule(
-            rule,
-            position || this._domStyleElement.sheet.cssRules.length
-          );
+          const sheet = this._domStyleElement.sheet;
+          sheet.insertRule(rule, position || sheet.cssRules.length);
         }
       }
     }

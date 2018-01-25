@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`apis/AppRegistry/renderApplication getApplication 1`] = `
+exports[`AppRegistry/renderApplication getApplication returns "element" and "getStyleElement" 1`] = `
 <AppContainer
   rootTag={Object {}}
 >
@@ -8,7 +8,7 @@ exports[`apis/AppRegistry/renderApplication getApplication 1`] = `
 </AppContainer>
 `;
 
-exports[`apis/AppRegistry/renderApplication getApplication 2`] = `
+exports[`AppRegistry/renderApplication getApplication returns "element" and "getStyleElement" 2`] = `
 "<style id=\\"react-native-stylesheet\\">@media all{
 html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0);}
 body{margin:0;}
